@@ -2,7 +2,6 @@
   "host": "127.0.0.1",
   "port": 8101,
   "default_printer": "",
-  "max_file_size_mb": 50,
   "api_key": "",
   "log_level": "INFO",
   "retry_count": 3,

@@ -113,6 +113,13 @@ curl -X POST http://127.0.0.1:8101/api/print \
   -d "{\"type\": \"base64\", \"data\": \"JVBERi0xLjQK...\", \"format\": \"auto\", \"printer\": \"HP LaserJet\"}"
 ```
 
+**Упрощённый эндпоинт для base64 изображения (`jpeg`):**
+```bash
+curl -X POST http://127.0.0.1:8101/api/print/simple \
+  -H "Content-Type: application/json" \
+  -d "{\"jpeg\": \"iVBORw0KGgoAAAANSUhEUgAA...\", \"printer\": \"HP LaserJet\"}"
+```
+
 **С опциями:**
 ```bash
 curl -X POST http://127.0.0.1:8101/api/print \
@@ -203,6 +210,14 @@ data = {
     "printer": "HP LaserJet"
 }
 response = requests.post(f"{BASE_URL}/print", json=data)
+print(response.json())
+
+# 3.1 Упрощённая печать base64 изображения
+data = {
+    "jpeg": image_data,
+    "printer": "HP LaserJet"
+}
+response = requests.post(f"{BASE_URL}/print/simple", json=data)
 print(response.json())
 
 # 4. Проверка статуса

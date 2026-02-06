@@ -62,6 +62,7 @@ def shutdown():
             print_queue.stop_processing()
         
         logger.info("Сервис остановлен")
+        exit()
     except Exception as e:
         logger.error(f"Ошибка при завершении работы: {e}")
 

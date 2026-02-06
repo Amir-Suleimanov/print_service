@@ -8,3 +8,544 @@
 2026-02-05 15:45:12 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
 2026-02-05 15:45:12 | INFO     | __main__:run_server:74 | Запуск сервера на 127.0.0.1:8101
 2026-02-05 15:47:15 | INFO     | services.printer:get_printers:42 | Найдено принтеров: 2
+2026-02-06 11:34:53 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 11:34:53 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 11:34:53 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 11:34:53 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 11:34:53 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 11:34:53 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 11:34:53 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 11:34:53 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 11:34:53 | INFO     | __main__:run_server:74 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 11:35:02 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmpe_uyzumh.png
+2026-02-06 11:35:02 | INFO     | services.converter:prepare_file:161 | Файл подготовлен: C:\Users\amirs\Desktop\Work\print_service\temp\tmpe_uyzumh.png, формат: image
+2026-02-06 11:35:02 | INFO     | services.printer:get_printers:42 | Найдено принтеров: 3
+2026-02-06 11:35:02 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: ad8cb93f-e270-40eb-94ba-ed7c16af8771
+2026-02-06 11:35:02 | INFO     | api.routes:print_simple_base64:234 | Простое задание печати создано: ad8cb93f-e270-40eb-94ba-ed7c16af8771
+2026-02-06 11:35:03 | INFO     | services.queue:_process_queue:242 | Обработка задания: ad8cb93f-e270-40eb-94ba-ed7c16af8771
+2026-02-06 11:35:03 | INFO     | services.printer:get_printers:42 | Найдено принтеров: 3
+2026-02-06 11:35:03 | INFO     | services.printer:print_image:156 | Отправка изображения на печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmpe_uyzumh.png -> CUSTOM TG2480-H
+2026-02-06 11:35:03 | INFO     | services.printer:print_image:200 | Изображение отправлено на печать. Job ID: 7c08ff00-071d-41d6-8fcd-f3cca37a64b4
+2026-02-06 11:35:03 | INFO     | services.queue:_process_queue:253 | Задание выполнено: ad8cb93f-e270-40eb-94ba-ed7c16af8771
+2026-02-06 11:37:28 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 11:37:28 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 11:37:29 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 11:37:29 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 11:37:29 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 11:38:15 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 11:38:15 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 11:38:15 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 11:38:15 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 11:38:15 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 11:38:15 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 11:38:15 | INFO     | services.queue:_load_queue:311 | Загружено заданий из очереди: 1
+2026-02-06 11:38:15 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 11:38:15 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 11:38:15 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 11:38:25 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmpj6seb3kz.png
+2026-02-06 11:38:25 | INFO     | services.converter:prepare_file:161 | Файл подготовлен: C:\Users\amirs\Desktop\Work\print_service\temp\tmpj6seb3kz.png, формат: image
+2026-02-06 11:38:25 | INFO     | services.converter:convert_image_to_pdf:120 | Изображение конвертировано в PDF: temp\tmpj6seb3kz.pdf
+2026-02-06 11:38:25 | INFO     | services.printer:get_printers:42 | Найдено принтеров: 3
+2026-02-06 11:38:25 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: f453bf97-c982-4764-82d9-b9dbc38f0854
+2026-02-06 11:38:25 | INFO     | api.routes:print_simple_base64:246 | Простое задание печати создано: f453bf97-c982-4764-82d9-b9dbc38f0854
+2026-02-06 11:38:25 | INFO     | services.queue:_process_queue:242 | Обработка задания: f453bf97-c982-4764-82d9-b9dbc38f0854
+2026-02-06 11:38:25 | INFO     | services.printer:get_printers:42 | Найдено принтеров: 3
+2026-02-06 11:38:25 | INFO     | services.printer:print_pdf:104 | Отправка PDF на печать: temp\tmpj6seb3kz.pdf -> CUSTOM TG2480-H
+2026-02-06 11:38:26 | ERROR    | services.printer:print_pdf:128 | Ошибка печати PDF: (31, 'ShellExecute', 'Присоединенное к системе устройство не работает.')
+2026-02-06 11:38:26 | ERROR    | services.printer:print_file:249 | Ошибка печати файла: (31, 'ShellExecute', 'Присоединенное к системе устройство не работает.')
+2026-02-06 11:38:26 | ERROR    | services.queue:_process_queue:256 | Ошибка выполнения задания f453bf97-c982-4764-82d9-b9dbc38f0854: (31, 'ShellExecute', 'Присоединенное к системе устройство не работает.')
+2026-02-06 11:38:26 | INFO     | services.queue:_process_queue:267 | Задание f453bf97-c982-4764-82d9-b9dbc38f0854 будет повторено (1/3)
+2026-02-06 11:38:28 | INFO     | services.queue:_process_queue:242 | Обработка задания: f453bf97-c982-4764-82d9-b9dbc38f0854
+2026-02-06 11:38:28 | INFO     | services.printer:get_printers:42 | Найдено принтеров: 3
+2026-02-06 11:38:28 | INFO     | services.printer:print_pdf:104 | Отправка PDF на печать: temp\tmpj6seb3kz.pdf -> CUSTOM TG2480-H
+2026-02-06 11:38:28 | ERROR    | services.printer:print_pdf:128 | Ошибка печати PDF: (31, 'ShellExecute', 'Присоединенное к системе устройство не работает.')
+2026-02-06 11:38:28 | ERROR    | services.printer:print_file:249 | Ошибка печати файла: (31, 'ShellExecute', 'Присоединенное к системе устройство не работает.')
+2026-02-06 11:38:28 | ERROR    | services.queue:_process_queue:256 | Ошибка выполнения задания f453bf97-c982-4764-82d9-b9dbc38f0854: (31, 'ShellExecute', 'Присоединенное к системе устройство не работает.')
+2026-02-06 11:38:28 | INFO     | services.queue:_process_queue:267 | Задание f453bf97-c982-4764-82d9-b9dbc38f0854 будет повторено (2/3)
+2026-02-06 11:38:30 | INFO     | services.queue:_process_queue:242 | Обработка задания: f453bf97-c982-4764-82d9-b9dbc38f0854
+2026-02-06 11:38:30 | INFO     | services.printer:get_printers:42 | Найдено принтеров: 3
+2026-02-06 11:38:30 | INFO     | services.printer:print_pdf:104 | Отправка PDF на печать: temp\tmpj6seb3kz.pdf -> CUSTOM TG2480-H
+2026-02-06 11:38:30 | ERROR    | services.printer:print_pdf:128 | Ошибка печати PDF: (31, 'ShellExecute', 'Присоединенное к системе устройство не работает.')
+2026-02-06 11:38:30 | ERROR    | services.printer:print_file:249 | Ошибка печати файла: (31, 'ShellExecute', 'Присоединенное к системе устройство не работает.')
+2026-02-06 11:38:30 | ERROR    | services.queue:_process_queue:256 | Ошибка выполнения задания f453bf97-c982-4764-82d9-b9dbc38f0854: (31, 'ShellExecute', 'Присоединенное к системе устройство не работает.')
+2026-02-06 11:42:24 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 11:42:24 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 11:42:26 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 11:42:26 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 11:42:26 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 11:42:26 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 11:42:26 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 11:42:26 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 11:42:28 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 11:42:28 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 11:42:28 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 11:42:28 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 11:42:28 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 11:42:28 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 11:42:28 | INFO     | services.queue:_load_queue:311 | Загружено заданий из очереди: 2
+2026-02-06 11:42:28 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 11:42:28 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 11:42:28 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 11:42:38 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmp_41e_35o.png
+2026-02-06 11:42:39 | INFO     | services.converter:normalize_to_image:160 | Изображение нормализовано: C:\Users\amirs\Desktop\Work\print_service\temp\tmpv0v5gv3c.png
+2026-02-06 11:42:39 | INFO     | services.printer:get_printers:42 | Найдено принтеров: 3
+2026-02-06 11:42:39 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: bf6e9712-e032-4a47-9ac6-53d9c9d6af75
+2026-02-06 11:42:39 | INFO     | api.routes:print_simple_base64:229 | Простое задание печати создано: bf6e9712-e032-4a47-9ac6-53d9c9d6af75
+2026-02-06 11:42:40 | INFO     | services.queue:_process_queue:242 | Обработка задания: bf6e9712-e032-4a47-9ac6-53d9c9d6af75
+2026-02-06 11:42:40 | INFO     | services.printer:get_printers:42 | Найдено принтеров: 3
+2026-02-06 11:42:40 | INFO     | services.printer:print_image:156 | Отправка изображения на печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmpv0v5gv3c.png -> CUSTOM TG2480-H
+2026-02-06 11:42:40 | INFO     | services.printer:print_image:217 | Изображение отправлено на печать. Job ID: 522475c8-0c31-4b83-9497-786d022c7f59
+2026-02-06 11:42:40 | INFO     | services.queue:_process_queue:253 | Задание выполнено: bf6e9712-e032-4a47-9ac6-53d9c9d6af75
+2026-02-06 11:42:47 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 11:42:47 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 11:42:48 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 11:42:48 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 11:42:48 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 11:42:48 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 11:42:48 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 11:42:48 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 11:59:11 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 11:59:11 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 11:59:11 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 11:59:11 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 11:59:11 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 11:59:11 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 11:59:11 | INFO     | services.queue:_load_queue:311 | Загружено заданий из очереди: 3
+2026-02-06 11:59:11 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 11:59:11 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 11:59:11 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 11:59:38 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmpi8ykj6cu.png
+2026-02-06 11:59:38 | INFO     | services.converter:normalize_to_image:160 | Изображение нормализовано: C:\Users\amirs\Desktop\Work\print_service\temp\tmpxsyesnoa.png
+2026-02-06 11:59:38 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 11:59:38 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: c4c33da9-55e0-4983-8703-7a7563e8f7ea
+2026-02-06 11:59:38 | INFO     | api.routes:print_simple_base64:229 | Простое задание печати создано: c4c33da9-55e0-4983-8703-7a7563e8f7ea
+2026-02-06 11:59:39 | INFO     | services.queue:_process_queue:242 | Обработка задания: c4c33da9-55e0-4983-8703-7a7563e8f7ea
+2026-02-06 11:59:39 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 11:59:39 | INFO     | services.printer:print_image:157 | Отправка изображения на печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmpxsyesnoa.png -> CUSTOM TG2480-H
+2026-02-06 11:59:39 | INFO     | services.printer:print_image:252 | Изображение отправлено на печать. Job ID: 9d35dd53-5b12-4ce2-9cda-5c623e7c9a59
+2026-02-06 11:59:39 | INFO     | services.queue:_process_queue:253 | Задание выполнено: c4c33da9-55e0-4983-8703-7a7563e8f7ea
+2026-02-06 12:03:05 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 12:03:05 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:03:05 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 12:03:05 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:03:05 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:03:05 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:03:05 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:03:05 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:03:30 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 12:03:30 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 12:03:30 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 12:03:30 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 12:03:30 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 12:03:30 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 12:03:30 | INFO     | services.queue:_load_queue:311 | Загружено заданий из очереди: 4
+2026-02-06 12:03:30 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 12:03:30 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 12:03:30 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 12:03:39 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmpf_4fhfyo.png
+2026-02-06 12:03:40 | INFO     | services.converter:normalize_to_image:164 | Изображение нормализовано: C:\Users\amirs\Desktop\Work\print_service\temp\tmp4np2b5x3.png
+2026-02-06 12:03:40 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:03:40 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: e0e5b47a-f446-421f-96e1-947ce3bbd82d
+2026-02-06 12:03:40 | INFO     | api.routes:print_simple_base64:229 | Простое задание печати создано: e0e5b47a-f446-421f-96e1-947ce3bbd82d
+2026-02-06 12:03:40 | INFO     | services.queue:_process_queue:242 | Обработка задания: e0e5b47a-f446-421f-96e1-947ce3bbd82d
+2026-02-06 12:03:40 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:03:40 | INFO     | services.printer:print_image:157 | Отправка изображения на печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmp4np2b5x3.png -> CUSTOM TG2480-H
+2026-02-06 12:03:41 | INFO     | services.printer:print_image:263 | Изображение отправлено на печать. Job ID: 61cf1ef8-638c-4347-9d17-b45ff416e303
+2026-02-06 12:03:41 | INFO     | services.queue:_process_queue:253 | Задание выполнено: e0e5b47a-f446-421f-96e1-947ce3bbd82d
+2026-02-06 12:10:07 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 12:10:07 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:10:09 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 12:10:09 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:10:09 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:10:09 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:10:09 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:10:09 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:10:11 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 12:10:11 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 12:10:11 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 12:10:11 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 12:10:11 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 12:10:11 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 12:10:11 | INFO     | services.queue:_load_queue:311 | Загружено заданий из очереди: 5
+2026-02-06 12:10:11 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 12:10:11 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 12:10:11 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 12:10:20 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmp3h6nxtgh.png
+2026-02-06 12:10:20 | INFO     | services.converter:normalize_to_image:160 | Изображение нормализовано: C:\Users\amirs\Desktop\Work\print_service\temp\tmprwcpvl_x.png
+2026-02-06 12:10:20 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:10:20 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: 88d35a6d-5d8e-4ac7-8df2-925ea60c8f7a
+2026-02-06 12:10:20 | INFO     | api.routes:print_simple_base64:229 | Простое задание печати создано: 88d35a6d-5d8e-4ac7-8df2-925ea60c8f7a
+2026-02-06 12:10:21 | INFO     | services.queue:_process_queue:242 | Обработка задания: 88d35a6d-5d8e-4ac7-8df2-925ea60c8f7a
+2026-02-06 12:10:21 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:10:21 | INFO     | services.printer:print_image:157 | Отправка изображения на печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmprwcpvl_x.png -> CUSTOM TG2480-H
+2026-02-06 12:10:21 | INFO     | services.printer:print_image:252 | Изображение отправлено на печать. Job ID: 038e6f0d-fe5f-4925-aa7d-f324873cc3ae
+2026-02-06 12:10:21 | INFO     | services.queue:_process_queue:253 | Задание выполнено: 88d35a6d-5d8e-4ac7-8df2-925ea60c8f7a
+2026-02-06 12:15:05 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 12:15:05 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:15:07 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 12:15:07 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:15:07 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:15:07 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:15:07 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:15:07 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:15:09 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 12:15:09 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 12:15:09 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 12:15:09 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 12:15:09 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 12:15:09 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 12:15:09 | INFO     | services.queue:_load_queue:311 | Загружено заданий из очереди: 6
+2026-02-06 12:15:09 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 12:15:09 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 12:15:09 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 12:15:21 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmprh99_n6e.png
+2026-02-06 12:15:21 | INFO     | services.converter:normalize_to_image:158 | Изображение нормализовано: C:\Users\amirs\Desktop\Work\print_service\temp\tmph8ofspw5.png, режим: RGBA
+2026-02-06 12:15:21 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:15:21 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: f6df48f5-5ee8-49f7-bf24-ac1fc37a1e36
+2026-02-06 12:15:21 | INFO     | api.routes:print_simple_base64:229 | Простое задание печати создано: f6df48f5-5ee8-49f7-bf24-ac1fc37a1e36
+2026-02-06 12:15:21 | INFO     | services.queue:_process_queue:242 | Обработка задания: f6df48f5-5ee8-49f7-bf24-ac1fc37a1e36
+2026-02-06 12:15:21 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:15:21 | INFO     | services.printer:print_image:157 | Отправка изображения на печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmph8ofspw5.png -> CUSTOM TG2480-H
+2026-02-06 12:15:22 | INFO     | services.printer:print_image:252 | Изображение отправлено на печать. Job ID: 383343c7-257a-463c-ad39-9fcff9d04928
+2026-02-06 12:15:22 | INFO     | services.queue:_process_queue:253 | Задание выполнено: f6df48f5-5ee8-49f7-bf24-ac1fc37a1e36
+2026-02-06 12:19:07 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 12:19:07 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:19:08 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 12:19:08 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:19:08 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:19:08 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:19:08 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:19:08 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:19:12 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 12:19:12 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 12:19:12 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 12:19:12 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 12:19:12 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 12:19:12 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 12:19:12 | INFO     | services.queue:_load_queue:311 | Загружено заданий из очереди: 7
+2026-02-06 12:19:12 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 12:19:12 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 12:19:12 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 12:19:22 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmpv4t2mi5i.png
+2026-02-06 12:19:22 | INFO     | services.converter:normalize_to_image:158 | Изображение нормализовано: C:\Users\amirs\Desktop\Work\print_service\temp\tmponwyvm44.png, режим: RGBA
+2026-02-06 12:19:22 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:19:22 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: a095b342-7e07-4bc0-b8f3-8f7fb8e1d78e
+2026-02-06 12:19:22 | INFO     | api.routes:print_simple_base64:229 | Простое задание печати создано: a095b342-7e07-4bc0-b8f3-8f7fb8e1d78e
+2026-02-06 12:19:24 | INFO     | services.queue:_process_queue:242 | Обработка задания: a095b342-7e07-4bc0-b8f3-8f7fb8e1d78e
+2026-02-06 12:19:24 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:19:24 | INFO     | services.printer:print_image:157 | Отправка изображения на печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmponwyvm44.png -> CUSTOM TG2480-H
+2026-02-06 12:19:25 | INFO     | services.printer:print_image:223 | === ДИАГНОСТИКА ПЕЧАТИ ===
+2026-02-06 12:19:25 | INFO     | services.printer:print_image:224 | Файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmponwyvm44.png
+2026-02-06 12:19:25 | INFO     | services.printer:print_image:225 | Изображение: 2400x2660, режим: RGB
+2026-02-06 12:19:25 | INFO     | services.printer:print_image:226 | Printable area: 512x3130
+2026-02-06 12:19:25 | INFO     | services.printer:print_image:227 | Physical area: 528x3146, offset=(8,0)
+2026-02-06 12:19:25 | INFO     | services.printer:print_image:228 | Scale: 0.2133
+2026-02-06 12:19:25 | INFO     | services.printer:print_image:229 | Результат: позиция=(8,1281), размер=512x567
+2026-02-06 12:19:25 | INFO     | services.printer:print_image:230 | Прямоугольник: (8, 1281, 520, 1848)
+2026-02-06 12:19:25 | INFO     | services.printer:print_image:266 | Изображение отправлено на печать. Job ID: 35575704-6b00-419f-8477-328c23ba56d7
+2026-02-06 12:19:25 | INFO     | services.queue:_process_queue:253 | Задание выполнено: a095b342-7e07-4bc0-b8f3-8f7fb8e1d78e
+2026-02-06 12:22:17 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 12:22:17 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:22:19 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 12:22:19 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 12:22:19 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:22:24 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 12:22:24 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:22:29 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 12:22:29 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:22:34 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:22:34 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:22:34 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 12:22:34 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 12:22:34 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 12:22:38 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 12:22:38 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 12:22:38 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 12:22:38 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 12:22:38 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 12:22:38 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 12:22:38 | INFO     | services.queue:_load_queue:311 | Загружено заданий из очереди: 8
+2026-02-06 12:22:38 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 12:22:38 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 12:22:38 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 12:22:48 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmp527qje1z.png
+2026-02-06 12:22:49 | INFO     | services.converter:normalize_to_image:158 | Изображение нормализовано: C:\Users\amirs\Desktop\Work\print_service\temp\tmp_a1azdcz.png, режим: RGBA
+2026-02-06 12:22:49 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:22:49 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: 3a17bc0e-992a-4b5b-8a7a-42b64590edff
+2026-02-06 12:22:49 | INFO     | api.routes:print_simple_base64:229 | Простое задание печати создано: 3a17bc0e-992a-4b5b-8a7a-42b64590edff
+2026-02-06 12:22:50 | INFO     | services.queue:_process_queue:242 | Обработка задания: 3a17bc0e-992a-4b5b-8a7a-42b64590edff
+2026-02-06 12:22:50 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 12:22:50 | INFO     | services.printer:print_image:157 | Отправка изображения на печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmp_a1azdcz.png -> CUSTOM TG2480-H
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:232 | === ДИАГНОСТИКА ПЕЧАТИ ===
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:233 | Файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmp_a1azdcz.png
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:234 | Изображение: 2400x2660, режим: RGB
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:235 | Printable area: 512x3130
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:236 | Physical area: 528x3146, offset=(8,0)
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:237 | Scale: 0.2133
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:238 | Режим позиционирования: top-aligned
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:239 | Результат: позиция=(8,0), размер=512x567
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:240 | Прямоугольник: (8, 0, 520, 567)
+2026-02-06 12:22:51 | INFO     | services.printer:print_image:276 | Изображение отправлено на печать. Job ID: b9d12b55-d3f2-49f8-8243-5365e3f92653
+2026-02-06 12:22:51 | INFO     | services.queue:_process_queue:253 | Задание выполнено: 3a17bc0e-992a-4b5b-8a7a-42b64590edff
+2026-02-06 13:49:06 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 13:49:06 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 13:49:07 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 13:49:07 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 13:49:07 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 13:49:07 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 13:49:07 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 13:49:07 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 13:49:11 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 13:49:11 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 13:49:11 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 13:49:11 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 13:49:11 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 13:49:11 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 13:49:11 | INFO     | services.queue:_process_queue:226 | Поток обработки очереди запущен
+2026-02-06 13:49:11 | INFO     | services.queue:start_processing:210 | Обработка очереди запущена
+2026-02-06 13:49:11 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 13:49:24 | INFO     | services.converter:decode_base64:67 | Base64 декодирован в файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmpxx6vfrb3.png
+2026-02-06 13:49:24 | INFO     | services.converter:normalize_to_image:160 | Изображение нормализовано: C:\Users\amirs\Desktop\Work\print_service\temp\tmpaz73o1tw.png, режим: RGB
+2026-02-06 13:49:24 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 13:49:24 | INFO     | services.queue:add_job:127 | Задание добавлено в очередь: e76431c0-0cac-4376-8d6e-2415cc417f17
+2026-02-06 13:49:24 | INFO     | api.routes:print_simple_base64:229 | Простое задание печати создано: e76431c0-0cac-4376-8d6e-2415cc417f17
+2026-02-06 13:49:25 | INFO     | services.queue:_process_queue:242 | Обработка задания: e76431c0-0cac-4376-8d6e-2415cc417f17
+2026-02-06 13:49:25 | INFO     | services.printer:get_printers:43 | Найдено принтеров: 3
+2026-02-06 13:49:25 | INFO     | services.printer:print_image:157 | Отправка изображения на печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmpaz73o1tw.png -> CUSTOM TG2480-H
+2026-02-06 13:49:25 | INFO     | services.printer:print_image:217 | === ДИАГНОСТИКА ПЕЧАТИ ===
+2026-02-06 13:49:25 | INFO     | services.printer:print_image:218 | Файл: C:\Users\amirs\Desktop\Work\print_service\temp\tmpaz73o1tw.png
+2026-02-06 13:49:25 | INFO     | services.printer:print_image:219 | Изображение: 2400x2660, режим: RGB
+2026-02-06 13:49:25 | INFO     | services.printer:print_image:220 | Printable area: 512x3130
+2026-02-06 13:49:25 | INFO     | services.printer:print_image:221 | Scale: 0.2133
+2026-02-06 13:49:25 | INFO     | services.printer:print_image:222 | Результат: позиция=(0,1281), размер=512x567
+2026-02-06 13:49:25 | INFO     | services.printer:print_image:223 | Прямоугольник: (0, 1281, 512, 1848)
+2026-02-06 13:49:25 | INFO     | services.printer:print_image:259 | Изображение отправлено на печать. Job ID: 7b3b6dd4-36e9-4c4a-88ba-8bba88921280
+2026-02-06 13:49:25 | INFO     | services.queue:_process_queue:253 | Задание выполнено: e76431c0-0cac-4376-8d6e-2415cc417f17
+2026-02-06 14:06:26 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 14:06:26 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:06:26 | INFO     | services.queue:_process_queue:283 | Поток обработки очереди завершён
+2026-02-06 14:06:26 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 14:06:26 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:06:26 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:06:26 | INFO     | services.queue:stop_processing:217 | Обработка очереди остановлена
+2026-02-06 14:06:26 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:06:28 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 14:06:28 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 14:06:28 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 14:06:28 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:5555
+2026-02-06 14:06:28 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 14:06:28 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 14:06:28 | INFO     | services.queue:_load_queue:212 | Загружено заданий из очереди: 1
+2026-02-06 14:06:28 | INFO     | services.queue:_process_queue:151 | Поток обработки очереди запущен
+2026-02-06 14:06:28 | INFO     | services.queue:start_processing:142 | Обработка очереди запущена
+2026-02-06 14:06:28 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:5555
+2026-02-06 14:07:46 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 14:07:46 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:07:46 | INFO     | services.queue:_process_queue:181 | Поток обработки очереди завершён
+2026-02-06 14:07:46 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:07:46 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:07:46 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:07:46 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:07:46 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:07:48 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 14:07:48 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 14:07:48 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 14:07:48 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8081
+2026-02-06 14:07:48 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 14:07:48 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 14:07:48 | INFO     | services.queue:_load_queue:212 | Загружено заданий из очереди: 1
+2026-02-06 14:07:48 | INFO     | services.queue:_process_queue:151 | Поток обработки очереди запущен
+2026-02-06 14:07:48 | INFO     | services.queue:start_processing:142 | Обработка очереди запущена
+2026-02-06 14:07:48 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8081
+2026-02-06 14:08:34 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 14:08:34 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:08:36 | INFO     | services.queue:_process_queue:181 | Поток обработки очереди завершён
+2026-02-06 14:08:36 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:08:36 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:08:36 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:08:36 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:08:36 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:08:37 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 14:08:37 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 14:08:37 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 14:08:37 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 14:08:37 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 14:08:37 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 14:08:37 | INFO     | services.queue:_load_queue:212 | Загружено заданий из очереди: 1
+2026-02-06 14:08:37 | INFO     | services.queue:_process_queue:151 | Поток обработки очереди запущен
+2026-02-06 14:08:37 | INFO     | services.queue:start_processing:142 | Обработка очереди запущена
+2026-02-06 14:08:37 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 14:08:45 | WARNING  | api.routes:print_image:80 | Ошибка валидации: 1 validation error for PrintRequest
+image
+  Field required [type=missing, input_value={'jpeg': 'iVBORw0KGgoAAAA...CWzeJSAAAAAElFTkSuQmCC'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-06 14:13:15 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 14:13:15 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:13:17 | INFO     | services.queue:_process_queue:181 | Поток обработки очереди завершён
+2026-02-06 14:13:17 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:13:17 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:13:17 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:13:17 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:13:17 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:13:25 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 14:13:25 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 14:13:25 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 14:13:25 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 14:13:25 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 14:13:25 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 14:13:25 | INFO     | services.queue:_load_queue:212 | Загружено заданий из очереди: 1
+2026-02-06 14:13:25 | INFO     | services.queue:_process_queue:151 | Поток обработки очереди запущен
+2026-02-06 14:13:25 | INFO     | services.queue:start_processing:142 | Обработка очереди запущена
+2026-02-06 14:13:25 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 14:13:38 | INFO     | services.converter:decode_base64:56 | Base64 декодирован: C:\Users\amirs\Desktop\Work\print_service\temp\tmpo2hdkriq.png
+2026-02-06 14:13:38 | INFO     | services.converter:normalize_to_png:101 | PNG нормализован: C:\Users\amirs\Desktop\Work\print_service\temp\tmpwm1_sw5o.png (RGBA -> RGBA)
+2026-02-06 14:13:38 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:13:38 | INFO     | services.queue:add_job:104 | Задание добавлено: fb25e68f-872e-4006-b9a9-c8b5f7ad7cf1
+2026-02-06 14:13:38 | INFO     | api.routes:print_image:121 | Задание создано: fb25e68f-872e-4006-b9a9-c8b5f7ad7cf1
+2026-02-06 14:13:39 | INFO     | services.queue:_process_queue:163 | Обработка задания: fb25e68f-872e-4006-b9a9-c8b5f7ad7cf1
+2026-02-06 14:13:39 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:13:39 | INFO     | services.printer:print_image:86 | Печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmpwm1_sw5o.png -> CUSTOM TG2480-H
+2026-02-06 14:13:40 | INFO     | services.printer:print_image:121 | Печать: размер=512x567, позиция=(0,0), лист=512x3130
+2026-02-06 14:13:40 | INFO     | services.printer:print_image:133 | Напечатано. Job ID: 0ee765e9-ba6b-4148-b269-7fafaa06221e
+2026-02-06 14:13:40 | INFO     | services.queue:_process_queue:169 | Задание выполнено: fb25e68f-872e-4006-b9a9-c8b5f7ad7cf1
+2026-02-06 14:19:31 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 14:19:31 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:19:32 | INFO     | services.queue:_process_queue:181 | Поток обработки очереди завершён
+2026-02-06 14:19:32 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:19:32 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:19:32 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:19:32 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:19:32 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:19:35 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 14:19:35 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 14:19:35 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 14:19:35 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 14:19:35 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 14:19:35 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 14:19:35 | INFO     | services.queue:_load_queue:212 | Загружено заданий из очереди: 2
+2026-02-06 14:19:35 | INFO     | services.queue:_process_queue:151 | Поток обработки очереди запущен
+2026-02-06 14:19:35 | INFO     | services.queue:start_processing:142 | Обработка очереди запущена
+2026-02-06 14:19:35 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 14:19:46 | INFO     | services.converter:decode_base64:58 | Декодировано: размер=(2400, 2660), режим=RGBA
+2026-02-06 14:19:46 | INFO     | services.converter:decode_base64:59 | Диапазон цветов: ((0, 0), (0, 0), (0, 0), (0, 255))
+2026-02-06 14:19:46 | INFO     | services.converter:decode_base64:63 | Base64 декодирован: C:\Users\amirs\Desktop\Work\print_service\temp\tmprcki8bls.png
+2026-02-06 14:19:46 | INFO     | services.converter:normalize_to_png:108 | PNG нормализован: C:\Users\amirs\Desktop\Work\print_service\temp\tmpa9g5_f5c.png (RGBA -> RGBA)
+2026-02-06 14:19:46 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:19:46 | INFO     | services.queue:add_job:104 | Задание добавлено: 2b4383fe-ba13-4725-a71c-cadafca71d58
+2026-02-06 14:19:46 | INFO     | api.routes:print_image:121 | Задание создано: 2b4383fe-ba13-4725-a71c-cadafca71d58
+2026-02-06 14:19:47 | INFO     | services.queue:_process_queue:163 | Обработка задания: 2b4383fe-ba13-4725-a71c-cadafca71d58
+2026-02-06 14:19:47 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:19:47 | INFO     | services.printer:print_image:86 | Печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmpa9g5_f5c.png -> CUSTOM TG2480-H
+2026-02-06 14:19:47 | INFO     | services.printer:print_image:136 | Масштаб: 0.2133 (2400x2660 -> 512x567), лист=512x3130
+2026-02-06 14:19:47 | INFO     | services.printer:print_image:147 | Печать: размер=512x567, позиция=(0,0)
+2026-02-06 14:19:47 | INFO     | services.printer:print_image:151 | DEBUG: Сохранено для проверки: C:\Users\amirs\Desktop\Work\print_service\temp\tmpa9g5_f5c.png_debug_print.png
+2026-02-06 14:19:47 | INFO     | services.printer:print_image:163 | Напечатано. Job ID: 7e407065-870a-49bd-9357-bb594c25384c
+2026-02-06 14:19:47 | INFO     | services.queue:_process_queue:169 | Задание выполнено: 2b4383fe-ba13-4725-a71c-cadafca71d58
+2026-02-06 14:23:28 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 14:23:28 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:23:29 | INFO     | services.queue:_process_queue:181 | Поток обработки очереди завершён
+2026-02-06 14:23:29 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:23:29 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:23:29 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:23:29 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:23:29 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:23:31 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 14:23:31 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 14:23:31 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 14:23:31 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 14:23:31 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 14:23:31 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 14:23:31 | INFO     | services.queue:_load_queue:212 | Загружено заданий из очереди: 3
+2026-02-06 14:23:31 | INFO     | services.queue:_process_queue:151 | Поток обработки очереди запущен
+2026-02-06 14:23:31 | INFO     | services.queue:start_processing:142 | Обработка очереди запущена
+2026-02-06 14:23:32 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 14:23:41 | INFO     | services.converter:decode_base64:58 | Декодировано: размер=(2400, 2660), режим=RGBA
+2026-02-06 14:23:41 | INFO     | services.converter:decode_base64:59 | Диапазон цветов: ((0, 0), (0, 0), (0, 0), (0, 255))
+2026-02-06 14:23:41 | INFO     | services.converter:decode_base64:63 | Base64 декодирован: C:\Users\amirs\Desktop\Work\print_service\temp\tmplnzezd39.png
+2026-02-06 14:23:41 | INFO     | services.converter:normalize_to_png:108 | PNG нормализован: C:\Users\amirs\Desktop\Work\print_service\temp\tmpaobmq2e5.png (RGBA -> RGBA)
+2026-02-06 14:23:41 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:23:41 | INFO     | services.queue:add_job:104 | Задание добавлено: bf170825-edee-48a0-bb81-92316a29bf5d
+2026-02-06 14:23:41 | INFO     | api.routes:print_image:121 | Задание создано: bf170825-edee-48a0-bb81-92316a29bf5d
+2026-02-06 14:23:42 | INFO     | services.queue:_process_queue:163 | Обработка задания: bf170825-edee-48a0-bb81-92316a29bf5d
+2026-02-06 14:23:42 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:23:42 | INFO     | services.printer:print_image:87 | Печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmpaobmq2e5.png -> CUSTOM TG2480-H
+2026-02-06 14:23:42 | INFO     | services.printer:print_image:94 | Исходное изображение: (2400, 2660), режим: RGBA
+2026-02-06 14:23:42 | INFO     | services.printer:print_image:121 | Диапазон цветов RGB: ((0, 255), (0, 255), (0, 255))
+2026-02-06 14:23:42 | INFO     | services.printer:print_image:132 | Размер изображения: 2400x2660
+2026-02-06 14:23:42 | INFO     | services.printer:print_image:133 | Область печати принтера: 512x3130
+2026-02-06 14:23:42 | WARNING  | services.printer:print_image:143 | Изображение шире области печати: 2400 > 512
+2026-02-06 14:23:42 | INFO     | services.printer:print_image:147 | Печать: позиция=(0,0), размер=2400x2660
+2026-02-06 14:23:42 | INFO     | services.printer:print_image:159 | Напечатано. Job ID: 02b97474-dee4-4291-9a21-fb0d947d95ea
+2026-02-06 14:23:42 | INFO     | services.queue:_process_queue:169 | Задание выполнено: bf170825-edee-48a0-bb81-92316a29bf5d
+2026-02-06 14:29:41 | INFO     | __main__:signal_handler:49 | Получен сигнал 2, завершение работы...
+2026-02-06 14:29:41 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:29:42 | INFO     | services.queue:_process_queue:181 | Поток обработки очереди завершён
+2026-02-06 14:29:42 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:29:42 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:29:42 | INFO     | __main__:shutdown:61 | Остановка обработки очереди...
+2026-02-06 14:29:42 | INFO     | services.queue:stop_processing:148 | Обработка очереди остановлена
+2026-02-06 14:29:42 | INFO     | __main__:shutdown:64 | Сервис остановлен
+2026-02-06 14:29:43 | INFO     | utils.logger:setup_logger:51 | Логирование настроено. Уровень: INFO, Файл: ./logs/print_service.log
+2026-02-06 14:29:43 | INFO     | __main__:setup:32 | ============================================================
+2026-02-06 14:29:43 | INFO     | __main__:setup:33 | Запуск Print Service
+2026-02-06 14:29:43 | INFO     | __main__:setup:34 | Хост: 127.0.0.1:8101
+2026-02-06 14:29:43 | INFO     | __main__:setup:35 | Уровень логирования: INFO
+2026-02-06 14:29:43 | INFO     | __main__:setup:36 | ============================================================
+2026-02-06 14:29:43 | INFO     | services.queue:_load_queue:212 | Загружено заданий из очереди: 4
+2026-02-06 14:29:43 | INFO     | services.queue:_process_queue:151 | Поток обработки очереди запущен
+2026-02-06 14:29:43 | INFO     | services.queue:start_processing:142 | Обработка очереди запущена
+2026-02-06 14:29:43 | INFO     | __main__:run_server:75 | Запуск сервера на 127.0.0.1:8101
+2026-02-06 14:29:49 | INFO     | services.converter:decode_base64:58 | Декодировано: размер=(2400, 2660), режим=RGBA
+2026-02-06 14:29:49 | INFO     | services.converter:decode_base64:59 | Диапазон цветов: ((0, 0), (0, 0), (0, 0), (0, 255))
+2026-02-06 14:29:49 | INFO     | services.converter:decode_base64:63 | Base64 декодирован: C:\Users\amirs\Desktop\Work\print_service\temp\tmp14kk1gdh.png
+2026-02-06 14:29:49 | INFO     | services.converter:normalize_to_png:108 | PNG нормализован: C:\Users\amirs\Desktop\Work\print_service\temp\tmp70zim1a_.png (RGBA -> RGBA)
+2026-02-06 14:29:49 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:29:49 | INFO     | services.queue:add_job:104 | Задание добавлено: 422ae605-7eeb-41d5-821f-84d98dbbb63b
+2026-02-06 14:29:49 | INFO     | api.routes:print_image:121 | Задание создано: 422ae605-7eeb-41d5-821f-84d98dbbb63b
+2026-02-06 14:29:51 | INFO     | services.queue:_process_queue:163 | Обработка задания: 422ae605-7eeb-41d5-821f-84d98dbbb63b
+2026-02-06 14:29:51 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:29:51 | INFO     | services.printer:print_image:87 | Печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmp70zim1a_.png -> CUSTOM TG2480-H
+2026-02-06 14:29:51 | INFO     | services.printer:print_image:94 | Исходное: (2400, 2660), режим: RGBA
+2026-02-06 14:29:51 | INFO     | services.printer:print_image:120 | Принтер: 512x3130
+2026-02-06 14:29:51 | INFO     | services.printer:print_image:128 | Масштабировано: 2400x2660 -> 512x567 (scale=0.2133)
+2026-02-06 14:29:51 | INFO     | services.printer:print_image:138 | RGB после обработки: ((0, 255), (0, 255), (0, 255))
+2026-02-06 14:29:51 | INFO     | services.printer:print_image:147 | DEBUG сохранено: C:\Users\amirs\Desktop\Work\print_service\temp\tmp70zim1a_.png_FINAL.png
+2026-02-06 14:29:51 | INFO     | services.printer:print_image:151 | Печать: pos=(0,0), size=512x567
+2026-02-06 14:29:51 | INFO     | services.printer:print_image:163 | Напечатано. Job ID: 3ba9f618-9ef2-4e42-b622-52d5bdf24241
+2026-02-06 14:29:51 | INFO     | services.queue:_process_queue:169 | Задание выполнено: 422ae605-7eeb-41d5-821f-84d98dbbb63b
+2026-02-06 14:37:16 | INFO     | services.converter:decode_base64:58 | Декодировано: размер=(1800, 1310), режим=RGBA
+2026-02-06 14:37:16 | INFO     | services.converter:decode_base64:59 | Диапазон цветов: ((0, 0), (0, 0), (0, 0), (0, 255))
+2026-02-06 14:37:16 | INFO     | services.converter:decode_base64:63 | Base64 декодирован: C:\Users\amirs\Desktop\Work\print_service\temp\tmp6abn9ta2.png
+2026-02-06 14:37:16 | INFO     | services.converter:normalize_to_png:108 | PNG нормализован: C:\Users\amirs\Desktop\Work\print_service\temp\tmp266q67cb.png (RGBA -> RGBA)
+2026-02-06 14:37:16 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:37:16 | INFO     | services.queue:add_job:104 | Задание добавлено: e07341f2-31fa-4ca9-aaf3-b43b772e3b10
+2026-02-06 14:37:16 | INFO     | api.routes:print_image:121 | Задание создано: e07341f2-31fa-4ca9-aaf3-b43b772e3b10
+2026-02-06 14:37:18 | INFO     | services.queue:_process_queue:163 | Обработка задания: e07341f2-31fa-4ca9-aaf3-b43b772e3b10
+2026-02-06 14:37:18 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:37:18 | INFO     | services.printer:print_image:87 | Печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmp266q67cb.png -> CUSTOM TG2480-H
+2026-02-06 14:37:18 | INFO     | services.printer:print_image:94 | Исходное: (1800, 1310), режим: RGBA
+2026-02-06 14:37:18 | INFO     | services.printer:print_image:120 | Принтер: 512x3130
+2026-02-06 14:37:18 | INFO     | services.printer:print_image:128 | Масштабировано: 1800x1310 -> 512x372 (scale=0.2844)
+2026-02-06 14:37:18 | INFO     | services.printer:print_image:138 | RGB после обработки: ((0, 255), (0, 255), (0, 255))
+2026-02-06 14:37:18 | INFO     | services.printer:print_image:147 | DEBUG сохранено: C:\Users\amirs\Desktop\Work\print_service\temp\tmp266q67cb.png_FINAL.png
+2026-02-06 14:37:18 | INFO     | services.printer:print_image:151 | Печать: pos=(0,0), size=512x372
+2026-02-06 14:37:18 | INFO     | services.printer:print_image:163 | Напечатано. Job ID: 199e7ba0-1610-4ae8-b473-f12b2650b51c
+2026-02-06 14:37:18 | INFO     | services.queue:_process_queue:169 | Задание выполнено: e07341f2-31fa-4ca9-aaf3-b43b772e3b10
+2026-02-06 14:39:23 | INFO     | services.converter:decode_base64:58 | Декодировано: размер=(1800, 1310), режим=RGBA
+2026-02-06 14:39:23 | INFO     | services.converter:decode_base64:59 | Диапазон цветов: ((0, 0), (0, 0), (0, 0), (0, 255))
+2026-02-06 14:39:23 | INFO     | services.converter:decode_base64:63 | Base64 декодирован: C:\Users\amirs\Desktop\Work\print_service\temp\tmpgj6rwevv.png
+2026-02-06 14:39:23 | INFO     | services.converter:normalize_to_png:108 | PNG нормализован: C:\Users\amirs\Desktop\Work\print_service\temp\tmpevnfwtua.png (RGBA -> RGBA)
+2026-02-06 14:39:23 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:39:23 | INFO     | services.queue:add_job:104 | Задание добавлено: 3af97a6e-ef3b-4f04-b9da-7ed45dec891d
+2026-02-06 14:39:23 | INFO     | api.routes:print_image:121 | Задание создано: 3af97a6e-ef3b-4f04-b9da-7ed45dec891d
+2026-02-06 14:39:24 | INFO     | services.queue:_process_queue:163 | Обработка задания: 3af97a6e-ef3b-4f04-b9da-7ed45dec891d
+2026-02-06 14:39:24 | INFO     | services.printer:get_printers:37 | Найдено принтеров: 3
+2026-02-06 14:39:24 | INFO     | services.printer:print_image:87 | Печать: C:\Users\amirs\Desktop\Work\print_service\temp\tmpevnfwtua.png -> CUSTOM TG2480-H
+2026-02-06 14:39:24 | INFO     | services.printer:print_image:94 | Исходное: (1800, 1310), режим: RGBA
+2026-02-06 14:39:24 | INFO     | services.printer:print_image:120 | Принтер: 512x3130
+2026-02-06 14:39:24 | INFO     | services.printer:print_image:128 | Масштабировано: 1800x1310 -> 512x372 (scale=0.2844)
+2026-02-06 14:39:24 | INFO     | services.printer:print_image:138 | RGB после обработки: ((0, 255), (0, 255), (0, 255))
+2026-02-06 14:39:24 | INFO     | services.printer:print_image:147 | DEBUG сохранено: C:\Users\amirs\Desktop\Work\print_service\temp\tmpevnfwtua.png_FINAL.png
+2026-02-06 14:39:24 | INFO     | services.printer:print_image:151 | Печать: pos=(0,0), size=512x372
+2026-02-06 14:39:24 | INFO     | services.printer:print_image:163 | Напечатано. Job ID: cb2eb08d-3c18-4c2e-a9d6-5b4af28443bd
+2026-02-06 14:39:24 | INFO     | services.queue:_process_queue:169 | Задание выполнено: 3af97a6e-ef3b-4f04-b9da-7ed45dec891d
