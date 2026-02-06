@@ -59,18 +59,9 @@ class PrinterService:
     @staticmethod
     def print_image(file_path: str, printer_name: Optional[str] = None) -> str:
         """
-        Печать изображения на термопринтере.
-        Масштабирует под ширину принтера, сохраняя пропорции.
-
-        Args:
-            file_path: Путь к PNG изображению
-            printer_name: Имя принтера
-
-        Returns:
-            ID задания печати
+        Печать изображения на термопринтере TG2480 через ESC/POS.
+        С центрированием и автоматической обрезкой.
         """
-        hdc = None
-
         try:
             if not printer_name:
                 printer_name = PrinterService.get_default_printer()
@@ -93,84 +84,129 @@ class PrinterService:
 
             logger.info(f"Исходное: {original_size}, режим: {original_mode}")
 
-            # === КОНВЕРТАЦИЯ В RGB ===
+            # === ОБРАБОТКА ПРОЗРАЧНОСТИ → GRAYSCALE ===
             if image.mode == 'RGBA':
-                background = Image.new('RGBA', image.size, (255, 255, 255, 255))
-                image = Image.alpha_composite(background, image)
-                image = image.convert('RGB')
-            elif image.mode in ('LA', 'P'):
-                image = image.convert('RGBA')
-                background = Image.new('RGBA', image.size, (255, 255, 255, 255))
-                image = Image.alpha_composite(background, image)
-                image = image.convert('RGB')
-            elif image.mode == 'L':
-                image = image.convert('RGB')
-            elif image.mode != 'RGB':
-                image = image.convert('RGB')
+                r, g, b, a = image.split()
+                rgb_image = Image.merge('RGB', (r, g, b))
+                gray = rgb_image.convert('L')
+                result = Image.new('L', image.size, 255)
+                result.paste(gray, mask=a)
+                image = result
+            elif image.mode == 'LA':
+                l, a = image.split()
+                result = Image.new('L', image.size, 255)
+                result.paste(l, mask=a)
+                image = result
+            elif image.mode == 'P':
+                if 'transparency' in image.info:
+                    image = image.convert('RGBA')
+                    r, g, b, a = image.split()
+                    rgb_image = Image.merge('RGB', (r, g, b))
+                    gray = rgb_image.convert('L')
+                    result = Image.new('L', image.size, 255)
+                    result.paste(gray, mask=a)
+                    image = result
+                else:
+                    image = image.convert('L')
+            elif image.mode != 'L':
+                image = image.convert('L')
 
-            # === СОЗДАЁМ КОНТЕКСТ ПРИНТЕРА ===
-            hdc = win32ui.CreateDC()
-            hdc.CreatePrinterDC(printer_name)
-
-            printable_width = hdc.GetDeviceCaps(win32con.HORZRES)
-            printable_height = hdc.GetDeviceCaps(win32con.VERTRES)
-
+            # === ПАРАМЕТРЫ ПРИНТЕРА ===
+            PRINTABLE_WIDTH = 608  # Ширина области печати TG2480 (80mm бумага)
+            MAX_WIDTH = 512        # Максимальная ширина изображения
+            
+            # === МАСШТАБИРОВАНИЕ ===
             image_width, image_height = image.size
-
-            logger.info(f"Принтер: {printable_width}x{printable_height}")
-
-            # === МАСШТАБИРОВАНИЕ ПОД ШИРИНУ ПРИНТЕРА ===
-            if image_width != printable_width:
-                scale = printable_width / image_width
-                new_width = printable_width
+            if image_width > MAX_WIDTH:
+                scale = MAX_WIDTH / image_width
+                new_width = MAX_WIDTH
                 new_height = int(image_height * scale)
                 image = image.resize((new_width, new_height), Image.LANCZOS)
-                logger.info(
-                    f"Масштабировано: {image_width}x{image_height} -> "
-                    f"{new_width}x{new_height} (scale={scale:.4f})"
-                )
-            else:
-                new_width, new_height = image_width, image_height
-                logger.info(f"Масштабирование не требуется: {new_width}x{new_height}")
+                logger.info(f"Масштабировано: {image_width}x{image_height} -> {new_width}x{new_height}")
 
-            # === ПРОВЕРКА ИЗОБРАЖЕНИЯ ===
-            extrema = image.getextrema()
-            logger.info(f"RGB после обработки: {extrema}")
-            if extrema == ((255, 255), (255, 255), (255, 255)):
-                logger.error("ОШИБКА: Изображение полностью белое!")
-            elif extrema == ((0, 0), (0, 0), (0, 0)):
-                logger.error("ОШИБКА: Изображение полностью чёрное!")
+            # === КОНВЕРТАЦИЯ В 1-BIT ===
+            image = image.point(lambda x: 0 if x < 128 else 255, '1')
+            
+            width, height = image.size
+            logger.info(f"1-bit изображение: {width}x{height}")
 
-            # === СОХРАНЯЕМ ДЛЯ ОТЛАДКИ ===
-            debug_path = file_path + "_FINAL.png"
-            image.save(debug_path, 'PNG')
-            logger.info(f"DEBUG сохранено: {debug_path}")
+            # === РАСЧЁТ ЦЕНТРИРОВАНИЯ ===
+            left_margin = (PRINTABLE_WIDTH - width) // 2
+            margin_nL = left_margin % 256
+            margin_nH = left_margin // 256
+            
+            logger.info(f"Центрирование: отступ слева = {left_margin} точек")
 
-            # === ПЕЧАТЬ ===
-            x, y = 0, 0
-            logger.info(f"Печать: pos=({x},{y}), size={new_width}x{new_height}")
+            # === ФОРМИРОВАНИЕ ESC/POS ДАННЫХ ===
+            esc_pos_data = bytearray()
+            
+            # 1. Инициализация принтера
+            esc_pos_data += b'\x1B\x40'  # ESC @ - Initialize
+            
+            # 2. Установка левого поля для центрирования
+            # GS L nL nH
+            esc_pos_data += b'\x1D\x4C'  # GS L
+            esc_pos_data += bytes([margin_nL, margin_nH])
+            
+            # 3. Межстрочный интервал = 0 для графики
+            esc_pos_data += b'\x1B\x33\x00'  # ESC 3 0
+            
+            # 4. Данные изображения
+            nL = width % 256
+            nH = width // 256
+            
+            pixels = image.load()
+            
+            for y_block in range(0, height, 24):
+                # ESC * 33 nL nH (24-dot double density)
+                esc_pos_data += b'\x1B\x2A\x21'
+                esc_pos_data += bytes([nL, nH])
+                
+                for x in range(width):
+                    for byte_num in range(3):
+                        byte_val = 0
+                        for bit in range(8):
+                            y = y_block + byte_num * 8 + bit
+                            if y < height:
+                                pixel = pixels[x, y]
+                                if pixel == 0:  # Чёрный = печатать
+                                    byte_val |= (0x80 >> bit)
+                        esc_pos_data += bytes([byte_val])
+                
+                # Перевод строки
+                esc_pos_data += b'\x0A'
+            
+            # 5. Восстановление межстрочного интервала
+            esc_pos_data += b'\x1B\x32'  # ESC 2
+            
+            # 6. Прогон бумаги перед обрезкой (примерно 20мм = 160 точек при 203 DPI)
+            # ESC J n - прогон на n/200 дюйма (максимум 255)
+            esc_pos_data += b'\x1B\x4A\xA0'  # ESC J 160
+            
+            # 7. Полная обрезка
+            esc_pos_data += b'\x1B\x69'  # ESC i - Full cut
 
-            hdc.StartDoc(os.path.basename(file_path))
-            hdc.StartPage()
+            logger.info(f"ESC/POS: {len(esc_pos_data)} байт")
 
-            dib = ImageWin.Dib(image)
-            dib.draw(hdc.GetHandleOutput(), (x, y, x + new_width, y + new_height))
+            # === ОТПРАВКА НА ПРИНТЕР ===
+            hprinter = win32print.OpenPrinter(printer_name)
+            try:
+                job_info = ("ESC/POS Image", None, "RAW")
+                win32print.StartDocPrinter(hprinter, 1, job_info)
+                try:
+                    win32print.StartPagePrinter(hprinter)
+                    win32print.WritePrinter(hprinter, bytes(esc_pos_data))
+                    win32print.EndPagePrinter(hprinter)
+                finally:
+                    win32print.EndDocPrinter(hprinter)
+            finally:
+                win32print.ClosePrinter(hprinter)
 
-            hdc.EndPage()
-            hdc.EndDoc()
+            result_id = str(uuid.uuid4())
+            logger.info(f"Напечатано. Job ID: {result_id}")
 
-            job_id = str(uuid.uuid4())
-            logger.info(f"Напечатано. Job ID: {job_id}")
-
-            return job_id
+            return result_id
 
         except Exception as e:
             logger.error(f"Ошибка печати: {e}")
             raise
-
-        finally:
-            if hdc:
-                try:
-                    hdc.DeleteDC()
-                except Exception:
-                    pass

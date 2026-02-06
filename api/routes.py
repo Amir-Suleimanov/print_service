@@ -56,7 +56,7 @@ def create_app():
             raise ValueError("JSON должен быть объектом")
         return parsed
 
-    @app.route('/api', methods=['POST'])
+    @app.route('/Print', methods=['POST'])
     @require_api_key
     def print_image():
         """

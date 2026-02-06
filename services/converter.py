@@ -80,22 +80,20 @@ class FileConverter:
 
     def normalize_to_png(self, file_path: str) -> str:
         """
-        Нормализация изображения в PNG БЕЗ заливки фона.
-        Сохраняет прозрачность для термопринтера.
-
-        Args:
-            file_path: Путь к исходному изображению
-
-        Returns:
-            Путь к нормализованному PNG
+        Нормализация изображения в PNG.
+        Сохраняет прозрачность.
         """
         try:
             image = Image.open(file_path)
             original_mode = image.mode
 
-            # Конвертируем только проблемные режимы, сохраняя прозрачность.
-            if image.mode in ('P', 'LA', 'L'):
-                image = image.convert('RGBA')
+            # Только палитровые конвертируем
+            if image.mode == 'P':
+                if 'transparency' in image.info:
+                    image = image.convert('RGBA')
+                else:
+                    image = image.convert('RGB')
+            # Остальные режимы оставляем как есть
 
             temp_file = tempfile.NamedTemporaryFile(
                 delete=False,
@@ -105,13 +103,13 @@ class FileConverter:
             temp_file.close()
 
             image.save(temp_file.name, 'PNG')
-            logger.info(f"PNG нормализован: {temp_file.name} ({original_mode} -> {image.mode})")
+            logger.info(f"PNG: {temp_file.name} ({original_mode} -> {image.mode})")
 
             return temp_file.name
 
         except Exception as e:
             logger.error(f"Ошибка нормализации: {e}")
-            raise ValueError(f"Не удалось нормализовать изображение: {e}")
+            raise ValueError(f"Не удалось нормализовать: {e}")
 
     def cleanup(self, file_path: str):
         """Удаление временного файла"""
