@@ -179,12 +179,10 @@ class PrinterService:
             # 5. Восстановление межстрочного интервала
             esc_pos_data += b'\x1B\x32'  # ESC 2
             
-            # 6. Прогон бумаги перед обрезкой (примерно 20мм = 160 точек при 203 DPI)
-            # ESC J n - прогон на n/200 дюйма (максимум 255)
-            esc_pos_data += b'\x1B\x4A\xA0'  # ESC J 160
-            
-            # 7. Полная обрезка
-            esc_pos_data += b'\x1B\x69'  # ESC i - Full cut
+            # 6. TG2480: полная обрезка + автоматический обратный прогон бумаги.
+            # Команда убирает лишний верхний отступ перед следующей печатью.
+            # HEX: 1C C0 AA 0F EE 0B 34
+            esc_pos_data += b'\x1C\xC0\xAA\x0F\xEE\x0B\x34'
 
             logger.info(f"ESC/POS: {len(esc_pos_data)} байт")
 
