@@ -31,6 +31,7 @@ else:
 # Настройки
 APP_NAME = "PrintService"
 REGISTRY_KEY = r"Software\Microsoft\Windows\CurrentVersion\Run"
+STARTUP_APPROVED_KEY = r"Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run"
 ICON_PATH = os.path.join(BASE_DIR, "icon.ico")
 HOST = "127.0.0.1"
 PORT = 8101
@@ -216,6 +217,7 @@ def add_to_autostart():
         )
         winreg.SetValueEx(key, APP_NAME, 0, winreg.REG_SZ, get_exe_path())
         winreg.CloseKey(key)
+        _set_startup_approved_enabled()
         return True
     except Exception as e:
         log_error(f"Автозапуск: {e}")
@@ -233,8 +235,10 @@ def remove_from_autostart():
         )
         winreg.DeleteValue(key, APP_NAME)
         winreg.CloseKey(key)
+        _remove_startup_approved_value()
         return True
     except FileNotFoundError:
+        _remove_startup_approved_value()
         return True
     except Exception as e:
         log_error(f"Удаление из автозапуска: {e}")
@@ -242,7 +246,14 @@ def remove_from_autostart():
 
 
 def is_in_autostart():
-    """Проверить наличие в автозапуске"""
+    """Проверить, что автозапуск добавлен и включен"""
+    if not _has_run_entry():
+        return False
+    return _is_startup_approved_enabled()
+
+
+def _has_run_entry():
+    """Проверить наличие записи в HKCU\\...\\Run"""
     try:
         key = winreg.OpenKey(
             winreg.HKEY_CURRENT_USER, 
@@ -255,6 +266,70 @@ def is_in_autostart():
         return True
     except FileNotFoundError:
         return False
+    except Exception:
+        return False
+
+
+def _set_startup_approved_enabled():
+    """
+    Для Windows 10/11 явно устанавливаем состояние Enabled в StartupApproved.
+    Для Windows 7 этот ключ может не использоваться системой.
+    """
+    try:
+        key = winreg.CreateKeyEx(
+            winreg.HKEY_CURRENT_USER,
+            STARTUP_APPROVED_KEY,
+            0,
+            winreg.KEY_SET_VALUE
+        )
+        # 0x02 в первом байте означает состояние "Enabled".
+        enabled_data = bytes([0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        winreg.SetValueEx(key, APP_NAME, 0, winreg.REG_BINARY, enabled_data)
+        winreg.CloseKey(key)
+        return True
+    except Exception as e:
+        log_error(f"StartupApproved enable: {e}")
+        return False
+
+
+def _remove_startup_approved_value():
+    """Удалить значение из StartupApproved, если оно есть."""
+    try:
+        key = winreg.OpenKey(
+            winreg.HKEY_CURRENT_USER,
+            STARTUP_APPROVED_KEY,
+            0,
+            winreg.KEY_SET_VALUE
+        )
+        winreg.DeleteValue(key, APP_NAME)
+        winreg.CloseKey(key)
+        return True
+    except FileNotFoundError:
+        return True
+    except Exception as e:
+        log_error(f"StartupApproved remove: {e}")
+        return False
+
+
+def _is_startup_approved_enabled():
+    """
+    Если записи в StartupApproved нет, считаем автозапуск включенным
+    (поведение Windows 7 и некоторых сценариев Windows 10).
+    """
+    try:
+        key = winreg.OpenKey(
+            winreg.HKEY_CURRENT_USER,
+            STARTUP_APPROVED_KEY,
+            0,
+            winreg.KEY_READ
+        )
+        data, _ = winreg.QueryValueEx(key, APP_NAME)
+        winreg.CloseKey(key)
+        if isinstance(data, (bytes, bytearray)) and len(data) > 0:
+            return data[0] == 0x02
+        return True
+    except FileNotFoundError:
+        return True
     except Exception:
         return False
 
