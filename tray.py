@@ -25,14 +25,15 @@ if getattr(sys, 'frozen', False):
 # Определяем пути
 if getattr(sys, 'frozen', False):
     BASE_DIR = os.path.dirname(sys.executable)
+    BUNDLE_DIR = getattr(sys, "_MEIPASS", BASE_DIR)
 else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    BUNDLE_DIR = BASE_DIR
 
 # Настройки
 APP_NAME = "PrintService"
 REGISTRY_KEY = r"Software\Microsoft\Windows\CurrentVersion\Run"
 STARTUP_APPROVED_KEY = r"Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run"
-ICON_PATH = os.path.join(BASE_DIR, "icon.ico")
 HOST = "127.0.0.1"
 PORT = 8101
 
@@ -47,6 +48,19 @@ def log_error(message: str):
         pass
 
 
+def get_resource_path(filename: str):
+    """Найти файл рядом с exe или внутри PyInstaller bundle."""
+    primary = os.path.join(BASE_DIR, filename)
+    if os.path.exists(primary):
+        return primary
+
+    bundled = os.path.join(BUNDLE_DIR, filename)
+    if os.path.exists(bundled):
+        return bundled
+
+    return None
+
+
 class PrintServiceTray:
     def __init__(self):
         self.icon = None
@@ -55,11 +69,19 @@ class PrintServiceTray:
     
     def load_icon(self):
         """Загрузить иконку из файла"""
-        if os.path.exists(ICON_PATH):
+        logo_path = get_resource_path("logo.png")
+        if logo_path:
             try:
-                return Image.open(ICON_PATH)
+                return Image.open(logo_path).convert("RGBA")
             except Exception as e:
-                log_error(f"Ошибка загрузки иконки: {e}")
+                log_error(f"Ошибка загрузки иконки logo.png: {e}")
+
+        ico_path = get_resource_path("icon.ico")
+        if ico_path:
+            try:
+                return Image.open(ico_path).convert("RGBA")
+            except Exception as e:
+                log_error(f"Ошибка загрузки иконки icon.ico: {e}")
         
         # Fallback
         from PIL import ImageDraw
@@ -189,7 +211,7 @@ class PrintServiceTray:
         self.icon = pystray.Icon(
             name="print_service",
             icon=self.load_icon(),
-            title=f"Print Service - http://{HOST}:{PORT}",
+            title=APP_NAME,
             menu=menu
         )
         

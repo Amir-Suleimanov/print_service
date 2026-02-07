@@ -6,6 +6,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ('config.json', '.'),
+        ('logo.png', '.'),
         ('icon.ico', '.'),
     ],
     hiddenimports=[
