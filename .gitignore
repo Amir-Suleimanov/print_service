@@ -3,3 +3,5 @@ venv/**
 temp/
 test**
 **.log
+dist/
+build/

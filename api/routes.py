@@ -56,6 +56,16 @@ def create_app():
             raise ValueError("JSON должен быть объектом")
         return parsed
 
+    @app.route('/health', methods=['GET'])
+    def health():
+        """Проверка работоспособности сервиса"""
+        return jsonify({
+            "status": "ok",
+            "service": "PrintService",
+            "host": "127.0.0.1",
+            "port": 8101
+        })
+    
     @app.route('/Print', methods=['POST'])
     @require_api_key
     def print_image():
