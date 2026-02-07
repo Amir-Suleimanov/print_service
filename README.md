@@ -285,24 +285,23 @@ curl http://127.0.0.1:8101/api/printers?api_key=your-secret-key-here
 
 ## Логи
 
-Логи сохраняются в `./logs/print_service.log` с автоматической ротацией:
-- Максимальный размер: 10 МБ
+Логи сохраняются в `./logs/YYYY-MM-DD.log`:
+- Каждый день создаётся отдельный файл с текущей датой
 - Хранение: 7 дней
-- Старые логи сжимаются в ZIP
 
 Для просмотра логов в реальном времени:
 ```bash
-tail -f logs/print_service.log
+tail -f logs/$(date +%F).log
 ```
 
-(Или используйте PowerShell: `Get-Content -Path logs/print_service.log -Wait`)
+(Или используйте PowerShell: `Get-Content -Path logs/$(Get-Date -Format yyyy-MM-dd).log -Wait`)
 
 ## Troubleshooting
 
 ### Сервис не запускается
 
 1. Проверьте Event Viewer → Windows Logs → Application
-2. Проверьте логи в `./logs/print_service.log`
+2. Проверьте логи в `./logs/YYYY-MM-DD.log`
 3. Убедитесь что порт 8101 свободен:
    ```bash
    netstat -ano | findstr 8101

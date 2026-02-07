@@ -1,7 +1,6 @@
 """
 Модуль настройки логирования для сервиса печати
 """
-import sys
 from pathlib import Path
 from loguru import logger
 
@@ -35,7 +34,7 @@ def _log_filter(record: dict) -> bool:
     return False
 
 
-def setup_logger(log_level: str = "INFO", log_file: str = "./logs/print_service.log"):
+def setup_logger(log_level: str = "INFO", log_file: str = "./logs/{time:YYYY-MM-DD}.log"):
     """
     Настройка логирования для сервиса
     
@@ -58,23 +57,14 @@ def setup_logger(log_level: str = "INFO", log_file: str = "./logs/print_service.
         "<level>{message}</level>"
     )
     
-    # Добавляем вывод в консоль
-    logger.add(
-        sys.stdout,
-        format=log_format,
-        level=log_level,
-        colorize=True,
-        filter=_log_filter,
-    )
-    
-    # Добавляем вывод в файл с ротацией
+    # Добавляем вывод в файл:
+    # отдельный файл на каждый день с именем в формате YYYY-MM-DD.log
     logger.add(
         log_file,
         format=log_format,
         level=log_level,
-        rotation="10 MB",  # Ротация при достижении 10 МБ
+        rotation="00:00",  # Переключать файл в полночь
         retention="7 days",  # Хранить логи 7 дней
-        compression="zip",  # Сжимать старые логи
         encoding="utf-8",
         filter=_log_filter,
     )

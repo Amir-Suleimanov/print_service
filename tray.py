@@ -13,9 +13,12 @@ from PIL import Image
 
 # Перенаправление вывода когда нет консоли (exe без console)
 if getattr(sys, 'frozen', False):
-    # Путь к лог-файлу рядом с exe
-    log_file = os.path.join(os.path.dirname(sys.executable), 'tray.log')
-    sys.stdout = open(log_file, 'w', encoding='utf-8', buffering=1)
+    log_dir = os.path.join(os.path.dirname(sys.executable), "logs")
+    os.makedirs(log_dir, exist_ok=True)
+    log_file = os.path.join(log_dir, f"{time.strftime('%Y-%m-%d')}.log")
+    if not os.path.exists(log_file):
+        open(log_file, 'a', encoding='utf-8').close()
+    sys.stdout = open(log_file, 'a', encoding='utf-8', buffering=1)
     sys.stderr = sys.stdout
 # ============================
 
@@ -33,6 +36,16 @@ HOST = "127.0.0.1"
 PORT = 8101
 
 
+def log_error(message: str):
+    """Логировать ошибку в основной лог-файл."""
+    try:
+        from utils.logger import setup_logger, get_logger
+        setup_logger("INFO")
+        get_logger().error(message)
+    except Exception:
+        pass
+
+
 class PrintServiceTray:
     def __init__(self):
         self.icon = None
@@ -45,7 +58,7 @@ class PrintServiceTray:
             try:
                 return Image.open(ICON_PATH)
             except Exception as e:
-                print(f"Ошибка загрузки иконки: {e}")
+                log_error(f"Ошибка загрузки иконки: {e}")
         
         # Fallback
         from PIL import ImageDraw
@@ -96,7 +109,7 @@ class PrintServiceTray:
                 serve(app, host=HOST, port=PORT, threads=4, _quiet=True)
                 
             except Exception as e:
-                print(f"Server error: {e}")
+                log_error(f"Server error: {e}")
                 self.server_running = False
         
         self.server_thread = threading.Thread(target=run, daemon=True)
@@ -141,6 +154,11 @@ class PrintServiceTray:
     
     def on_exit(self, icon, item):
         """Выход из приложения"""
+        try:
+            from utils.logger import get_logger
+            get_logger().info("Сервис завершён")
+        except Exception:
+            pass
         self.server_running = False
         icon.stop()
     
@@ -200,7 +218,7 @@ def add_to_autostart():
         winreg.CloseKey(key)
         return True
     except Exception as e:
-        print(f"[ERROR] Автозапуск: {e}")
+        log_error(f"Автозапуск: {e}")
         return False
 
 
@@ -219,7 +237,7 @@ def remove_from_autostart():
     except FileNotFoundError:
         return True
     except Exception as e:
-        print(f"[ERROR] Удаление из автозапуска: {e}")
+        log_error(f"Удаление из автозапуска: {e}")
         return False
 
 
