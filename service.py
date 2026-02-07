@@ -34,9 +34,8 @@ class PrintService(win32serviceutil.ServiceFramework):
         # Флаг работы
         self.is_running = True
         
-        # Flask приложение и конфигурация
+        # Flask приложение
         self.app = None
-        self.config = None
         self.server_thread = None
     
     def SvcStop(self):
@@ -68,7 +67,7 @@ class PrintService(win32serviceutil.ServiceFramework):
             )
             
             # Инициализация
-            self.config, logger = setup()
+            logger = setup()
             logger.info("Windows Service запущен")
             
             # Импортируем приложение
@@ -82,7 +81,7 @@ class PrintService(win32serviceutil.ServiceFramework):
             )
             self.server_thread.start()
             
-            logger.info(f"Сервер запущен на {self.config.host}:{self.config.port}")
+            logger.info("Сервер запущен на 127.0.0.1:8101")
             
             # Ждём сигнала остановки
             win32event.WaitForSingleObject(self.stop_event, win32event.INFINITE)
@@ -108,8 +107,8 @@ class PrintService(win32serviceutil.ServiceFramework):
             # Запускаем Waitress
             serve(
                 self.app,
-                host=self.config.host,
-                port=self.config.port,
+                host="127.0.0.1",
+                port=8101,
                 threads=4,
                 _quiet=False
             )

@@ -7,7 +7,6 @@ import signal
 from waitress import serve
 
 from api.routes import create_app
-from config import get_config
 from utils.logger import setup_logger, get_logger
 from services.queue import get_print_queue
 
@@ -16,30 +15,25 @@ from services.queue import get_print_queue
 app = None
 print_queue = None
 is_running = True
+HOST = "127.0.0.1"
+PORT = 8101
 
 
 def setup():
     """Инициализация приложения"""
     global app, print_queue
-    
-    # Загружаем конфигурацию
-    config = get_config()
-    
+
     # Настраиваем логирование
-    setup_logger(config.log_level)
+    setup_logger("INFO")
     logger = get_logger()
-    
-    logger.info("=" * 60)
+
     logger.info("Запуск Print Service")
-    logger.info(f"Хост: {config.host}:{config.port}")
-    logger.info(f"Уровень логирования: {config.log_level}")
-    logger.info("=" * 60)
-    
+
     # Создаём Flask приложение
     app = create_app()
     print_queue = get_print_queue()
-    
-    return config, logger
+
+    return logger
 
 
 def signal_handler(signum, frame):
@@ -67,24 +61,24 @@ def shutdown():
         logger.error(f"Ошибка при завершении работы: {e}")
 
 
-def run_server(config):
+def run_server():
     """Запуск сервера"""
     logger = get_logger()
-    
+
     try:
-        logger.info(f"Запуск сервера на {config.host}:{config.port}")
-        
+        logger.info(f"Запуск сервера на {HOST}:{PORT}")
+
         # Используем Waitress для production
         serve(
             app,
-            host=config.host,
-            port=config.port,
+            host=HOST,
+            port=PORT,
             threads=4,
             _quiet=False
         )
-        
+
     except KeyboardInterrupt:
-        logger.info("Получен сигнал прерывания от пользователя")
+        logger.info("Остановка Print Service")
     except Exception as e:
         logger.error(f"Ошибка при запуске сервера: {e}")
         raise
@@ -99,11 +93,11 @@ def main():
     signal.signal(signal.SIGTERM, signal_handler)
     
     # Инициализация
-    config, logger = setup()
+    logger = setup()
     
     # Запуск сервера
     try:
-        run_server(config)
+        run_server()
     except Exception as e:
         logger.error(f"Критическая ошибка: {e}")
         sys.exit(1)

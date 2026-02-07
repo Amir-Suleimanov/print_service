@@ -3,11 +3,10 @@
 """
 import os
 import uuid
+from io import BytesIO
 import win32print
-import win32ui
-import win32con
-from PIL import Image, ImageWin
-from typing import List, Dict, Optional
+from PIL import Image
+from typing import List, Dict, Optional, Union
 
 from utils.logger import get_logger
 
@@ -34,7 +33,6 @@ class PrinterService:
                     'is_default': printer[2] == default
                 })
 
-            logger.info(f"Найдено принтеров: {len(printers)}")
             return printers
 
         except Exception as e:
@@ -57,7 +55,7 @@ class PrinterService:
         return any(p['name'] == printer_name for p in printers)
 
     @staticmethod
-    def print_image(file_path: str, printer_name: Optional[str] = None) -> str:
+    def print_image(file_input: Union[str, bytes], printer_name: Optional[str] = None) -> str:
         """
         Печать изображения на термопринтере TG2480 через ESC/POS.
         С центрированием и автоматической обрезкой.
@@ -72,17 +70,13 @@ class PrinterService:
             if not PrinterService.printer_exists(printer_name):
                 raise ValueError(f"Принтер не найден: {printer_name}")
 
-            if not os.path.exists(file_path):
-                raise FileNotFoundError(f"Файл не найден: {file_path}")
-
-            logger.info(f"Печать: {file_path} -> {printer_name}")
-
             # === ОТКРЫВАЕМ ИЗОБРАЖЕНИЕ ===
-            image = Image.open(file_path)
-            original_mode = image.mode
-            original_size = image.size
-
-            logger.info(f"Исходное: {original_size}, режим: {original_mode}")
+            if isinstance(file_input, bytes):
+                image = Image.open(BytesIO(file_input))
+            else:
+                if not os.path.exists(file_input):
+                    raise FileNotFoundError(f"Файл не найден: {file_input}")
+                image = Image.open(file_input)
 
             # === ОБРАБОТКА ПРОЗРАЧНОСТИ → GRAYSCALE ===
             if image.mode == 'RGBA':
@@ -122,20 +116,16 @@ class PrinterService:
                 new_width = MAX_WIDTH
                 new_height = int(image_height * scale)
                 image = image.resize((new_width, new_height), Image.LANCZOS)
-                logger.info(f"Масштабировано: {image_width}x{image_height} -> {new_width}x{new_height}")
 
             # === КОНВЕРТАЦИЯ В 1-BIT ===
             image = image.point(lambda x: 0 if x < 128 else 255, '1')
             
             width, height = image.size
-            logger.info(f"1-bit изображение: {width}x{height}")
 
             # === РАСЧЁТ ЦЕНТРИРОВАНИЯ ===
             left_margin = (PRINTABLE_WIDTH - width) // 2
             margin_nL = left_margin % 256
             margin_nH = left_margin // 256
-            
-            logger.info(f"Центрирование: отступ слева = {left_margin} точек")
 
             # === ФОРМИРОВАНИЕ ESC/POS ДАННЫХ ===
             esc_pos_data = bytearray()
@@ -184,8 +174,6 @@ class PrinterService:
             # HEX: 1C C0 AA 0F EE 0B 34
             esc_pos_data += b'\x1C\xC0\xAA\x0F\xEE\x0B\x34'
 
-            logger.info(f"ESC/POS: {len(esc_pos_data)} байт")
-
             # === ОТПРАВКА НА ПРИНТЕР ===
             hprinter = win32print.OpenPrinter(printer_name)
             try:
@@ -201,7 +189,6 @@ class PrinterService:
                 win32print.ClosePrinter(hprinter)
 
             result_id = str(uuid.uuid4())
-            logger.info(f"Напечатано. Job ID: {result_id}")
 
             return result_id
 

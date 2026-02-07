@@ -2,9 +2,7 @@
 Модуль конвертации файлов для печати
 """
 import base64
-import tempfile
-import os
-from pathlib import Path
+from io import BytesIO
 from PIL import Image
 import magic
 
@@ -16,12 +14,10 @@ logger = get_logger()
 class FileConverter:
     """Класс для конвертации файлов"""
 
-    def __init__(self, temp_folder: str = "./temp"):
-        self.temp_folder = Path(temp_folder)
-        self.temp_folder.mkdir(parents=True, exist_ok=True)
+    def __init__(self):
         self.magic = magic.Magic(mime=True)
 
-    def decode_base64(self, data: str) -> str:
+    def decode_base64(self, data: str) -> bytes:
         """
         Декодирование base64 строки в файл
 
@@ -29,7 +25,7 @@ class FileConverter:
             data: Base64 строка (с префиксом data:... или без)
 
         Returns:
-            Путь к временному файлу
+            Декодированные данные файла
         """
         try:
             if ',' in data and data.startswith('data:'):
@@ -41,81 +37,36 @@ class FileConverter:
                 raise ValueError("Декодированные данные пустые")
 
             mime_type = self.magic.from_buffer(file_data)
-            logger.debug(f"MIME тип: {mime_type}, размер: {len(file_data)} байт")
 
-            extension = self._get_extension_from_mime(mime_type)
+            if not mime_type.startswith("image/"):
+                raise ValueError(f"Неподдерживаемый MIME тип: {mime_type}")
 
-            temp_file = tempfile.NamedTemporaryFile(
-                delete=False,
-                suffix=extension,
-                dir=self.temp_folder
-            )
-            temp_file.write(file_data)
-            temp_file.close()
+            with Image.open(BytesIO(file_data)) as test_image:
+                test_image.verify()
 
-            try:
-                test_image = Image.open(temp_file.name)
-                logger.info(f"Декодировано: размер={test_image.size}, режим={test_image.mode}")
-                logger.info(f"Диапазон цветов: {test_image.getextrema()}")
-            except Exception as e:
-                logger.warning(f"Не удалось открыть декодированное изображение: {e}")
-
-            logger.info(f"Base64 декодирован: {temp_file.name}")
-            return temp_file.name
+            return file_data
 
         except Exception as e:
             logger.error(f"Ошибка декодирования base64: {e}")
             raise ValueError(f"Не удалось декодировать base64: {e}")
 
-    def _get_extension_from_mime(self, mime_type: str) -> str:
-        """Получение расширения из MIME типа"""
-        mime_map = {
-            'image/png': '.png',
-            'image/jpeg': '.jpg',
-            'image/jpg': '.jpg',
-            'image/bmp': '.bmp',
-            'image/gif': '.gif',
-        }
-        return mime_map.get(mime_type, '.png')
-
-    def normalize_to_png(self, file_path: str) -> str:
+    def normalize_to_png(self, file_data: bytes) -> bytes:
         """
         Нормализация изображения в PNG.
         Сохраняет прозрачность.
         """
         try:
-            image = Image.open(file_path)
-            original_mode = image.mode
+            with Image.open(BytesIO(file_data)) as image:
+                if image.mode == 'P':
+                    if 'transparency' in image.info:
+                        image = image.convert('RGBA')
+                    else:
+                        image = image.convert('RGB')
 
-            # Только палитровые конвертируем
-            if image.mode == 'P':
-                if 'transparency' in image.info:
-                    image = image.convert('RGBA')
-                else:
-                    image = image.convert('RGB')
-            # Остальные режимы оставляем как есть
-
-            temp_file = tempfile.NamedTemporaryFile(
-                delete=False,
-                suffix='.png',
-                dir=self.temp_folder
-            )
-            temp_file.close()
-
-            image.save(temp_file.name, 'PNG')
-            logger.info(f"PNG: {temp_file.name} ({original_mode} -> {image.mode})")
-
-            return temp_file.name
+                output = BytesIO()
+                image.save(output, 'PNG')
+                return output.getvalue()
 
         except Exception as e:
             logger.error(f"Ошибка нормализации: {e}")
             raise ValueError(f"Не удалось нормализовать: {e}")
-
-    def cleanup(self, file_path: str):
-        """Удаление временного файла"""
-        try:
-            if os.path.exists(file_path) and str(self.temp_folder) in file_path:
-                os.remove(file_path)
-                logger.debug(f"Удалён: {file_path}")
-        except Exception as e:
-            logger.warning(f"Не удалось удалить {file_path}: {e}")

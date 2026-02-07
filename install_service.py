@@ -124,19 +124,10 @@ def get_service_status():
 
 def print_service_info():
     """Вывод информации о сервисе"""
-    try:
-        # Загружаем конфигурацию
-        from config import get_config
-        config = get_config()
-        
-        print("")
-        print("Информация о сервисе:")
-        print(f"  API доступен по адресу: http://{config.host}:{config.port}")
-        print(f"  Логи: ./logs/print_service.log")
-        print(f"  Конфигурация: config.json")
-        
-    except Exception as e:
-        print(f"  Не удалось загрузить информацию: {e}")
+    print("")
+    print("Информация о сервисе:")
+    print("  API доступен по адресу: http://127.0.0.1:8101")
+    print("  Логи: ./logs/print_service.log")
 
 
 def print_status():

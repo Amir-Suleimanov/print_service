@@ -16,7 +16,6 @@ class Config:
         "default_printer": "",
         "api_key": "",
         "log_level": "INFO",
-        "temp_folder": "./temp",
         "retry_count": 3,
     }
 
@@ -67,9 +66,6 @@ class Config:
 
     def _ensure_directories(self):
         """Создание необходимых директорий"""
-        temp_folder = Path(self.config.get("temp_folder", "./temp"))
-        temp_folder.mkdir(parents=True, exist_ok=True)
-
         logs_folder = Path("./logs")
         logs_folder.mkdir(parents=True, exist_ok=True)
 
@@ -102,10 +98,6 @@ class Config:
     @property
     def log_level(self) -> str:
         return self.config.get("log_level", "INFO")
-
-    @property
-    def temp_folder(self) -> str:
-        return self.config.get("temp_folder", "./temp")
 
     @property
     def retry_count(self) -> int:

@@ -4,6 +4,5 @@
   "default_printer": "",
   "api_key": "",
   "log_level": "INFO",
-  "retry_count": 3,
-  "temp_folder": "./temp"
+  "retry_count": 3
 }

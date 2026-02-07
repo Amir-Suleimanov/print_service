@@ -79,8 +79,6 @@ def setup_logger(log_level: str = "INFO", log_file: str = "./logs/print_service.
         filter=_log_filter,
     )
     
-    logger.info(f"Логирование настроено. Уровень: {log_level}, Файл: {log_file}")
-    
     return logger
 
 
