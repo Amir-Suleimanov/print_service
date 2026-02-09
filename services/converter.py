@@ -50,6 +50,42 @@ class FileConverter:
             logger.error(f"Ошибка декодирования base64: {e}")
             raise ValueError(f"Не удалось декодировать base64: {e}")
 
+    def decode_base64_and_normalize_to_png(self, data: str) -> bytes:
+        """
+        Декодирование base64 и нормализация изображения в PNG за один проход.
+        Сохраняет прозрачность.
+        """
+        try:
+            if ',' in data and data.startswith('data:'):
+                data = data.split(',', 1)[1]
+
+            file_data = base64.b64decode(data)
+            if len(file_data) == 0:
+                raise ValueError("Декодированные данные пустые")
+
+            # Для MIME-проверки не требуется читать весь буфер.
+            mime_type = self.magic.from_buffer(file_data[:2048])
+            if not mime_type.startswith("image/"):
+                raise ValueError(f"Неподдерживаемый MIME тип: {mime_type}")
+
+            with Image.open(BytesIO(file_data)) as image:
+                # load() валидирует и полностью загружает изображение.
+                image.load()
+
+                if image.mode == 'P':
+                    if 'transparency' in image.info:
+                        image = image.convert('RGBA')
+                    else:
+                        image = image.convert('RGB')
+
+                output = BytesIO()
+                image.save(output, 'PNG')
+                return output.getvalue()
+
+        except Exception as e:
+            logger.error(f"Ошибка подготовки base64: {e}")
+            raise ValueError(f"Не удалось подготовить base64: {e}")
+
     def normalize_to_png(self, file_data: bytes) -> bytes:
         """
         Нормализация изображения в PNG.

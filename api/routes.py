@@ -86,8 +86,7 @@ def create_app():
                 ).dict()), 400
 
             try:
-                decoded_data = converter.decode_base64(req.image)
-                normalized_data = converter.normalize_to_png(decoded_data)
+                normalized_data = converter.decode_base64_and_normalize_to_png(req.image)
             except Exception as e:
                 logger.error(f"Ошибка подготовки: {e}")
                 return jsonify(ErrorResponse(
