@@ -9,7 +9,6 @@ from typing import Dict
 from api.validators import PrintRequest, PrintResponse, ErrorResponse
 from services.printer import PrinterService
 from services.converter import FileConverter
-from services.queue import get_print_queue
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -23,9 +22,6 @@ def create_app():
 
     converter = FileConverter()
     printer_service = PrinterService()
-    print_queue = get_print_queue()
-
-    print_queue.start_processing(printer_service)
 
     def require_api_key(f):
         """Декоратор проверки API ключа"""
@@ -115,16 +111,17 @@ def create_app():
                     details=f"Принтер '{printer_name}' не найден",
                 ).dict()), 404
 
-            job_id = print_queue.add_job(
-                image_data=normalized_data,
-                printer_name=printer_name,
-                copies=req.copies,
-            )
+            job_id = ""
+            for _ in range(req.copies):
+                job_id = printer_service.print_image(
+                    file_input=normalized_data,
+                    printer_name=printer_name,
+                )
 
             return jsonify(PrintResponse(
                 success=True,
                 job_id=job_id,
-                message="Отправлено в очередь печати",
+                message="Отправлено на печать",
             ).dict()), 200
 
         except Exception as e:

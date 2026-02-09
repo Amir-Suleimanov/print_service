@@ -8,12 +8,10 @@ from waitress import serve
 
 from api.routes import create_app
 from utils.logger import setup_logger, get_logger
-from services.queue import get_print_queue
 
 
 # Глобальные переменные
 app = None
-print_queue = None
 is_running = True
 HOST = "127.0.0.1"
 PORT = 8101
@@ -21,7 +19,7 @@ PORT = 8101
 
 def setup():
     """Инициализация приложения"""
-    global app, print_queue
+    global app
 
     # Настраиваем логирование
     setup_logger("INFO")
@@ -31,7 +29,6 @@ def setup():
 
     # Создаём Flask приложение
     app = create_app()
-    print_queue = get_print_queue()
 
     return logger
 
@@ -47,14 +44,9 @@ def signal_handler(signum, frame):
 
 def shutdown():
     """Корректное завершение работы"""
-    global print_queue
     logger = get_logger()
     
     try:
-        if print_queue:
-            logger.info("Остановка обработки очереди...")
-            print_queue.stop_processing()
-        
         logger.info("Сервис остановлен")
         exit()
     except Exception as e:

@@ -117,7 +117,6 @@ class PrintServiceTray:
         def run():
             try:
                 from api.routes import create_app
-                from services.queue import get_print_queue
                 from utils.logger import setup_logger, get_logger
                 from waitress import serve
                 

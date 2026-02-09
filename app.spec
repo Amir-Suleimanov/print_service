@@ -16,7 +16,6 @@ a = Analysis(
         'services',
         'services.converter',
         'services.printer',
-        'services.queue',
         'utils',
         'utils.logger',
         'flask',
